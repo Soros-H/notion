@@ -174,7 +174,28 @@
   </body>
 
   <script>
+    console.log(
+      "%c更新时间：2024-11-01 15:02:52",
+      "color: white; background-color: blue; padding: 5px 12px 4px; border-radius: 5px;"
+    );
+
     countDown();
+
+    var id = getParams("id");
+
+    var type = getParams("type");
+
+    // 获取参数
+    function getParams(name) {
+      // 获取当前 URL
+      const url = new URL(window.location.href);
+
+      // 使用 URLSearchParams 获取查询参数
+      const params = new URLSearchParams(url.search);
+
+      // 获取并返回参数值
+      return params.get(name);
+    }
 
     // 输入框的confirm事件
     function confirmBtn() {
@@ -185,9 +206,12 @@
       // 判断输入框的值是否为空
       if (inputValue) {
         // 输入框的值不为空，存贮到缓存中
-        sessionStorage.setItem("endTime", new Date(inputValue).getTime());
+        localStorage.setItem(
+          "endTime" + id + type,
+          new Date(inputValue).getTime()
+        );
         // 输入框的值不为空，存贮到缓存中
-        sessionStorage.setItem("name", inputName);
+        localStorage.setItem("name" + id + type, inputName);
         // 隐藏输入框
         document.getElementById("inputBox").style.display = "none";
         // 显示倒计时
@@ -208,7 +232,7 @@
     // 倒计时
     function countDown() {
       // 获取缓存的截止时间
-      var endTime = sessionStorage.getItem("endTime");
+      var endTime = localStorage.getItem("endTime" + id + type);
 
       // 判断是否存在缓存的截止时间
       if (endTime) {
@@ -221,7 +245,7 @@
       }
 
       // 获取缓存的名称
-      var name = sessionStorage.getItem("name");
+      var name = localStorage.getItem("name" + id + type);
       // 显示名称
       document.getElementById("countDownName").innerHTML = name;
 
@@ -298,9 +322,9 @@
     // 重置
     function reset() {
       // 清除缓存的截止时间
-      sessionStorage.removeItem("endTime");
+      localStorage.removeItem("endTime" + id + type);
       // 清除缓存的名称
-      sessionStorage.removeItem("name");
+      localStorage.removeItem("name" + id + type);
       // 隐藏倒计时
       document.getElementById("countDownBox").style.display = "none";
       // 显示输入框
