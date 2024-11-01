@@ -103,7 +103,12 @@
         outline: none; /* 去掉默认的轮廓 */
       }
 
+      .button-box {
+        display: flex;
+      }
+
       button {
+        margin-right: 20px;
         padding: 10px 20px;
         border: none;
         border-radius: 10px;
@@ -111,7 +116,25 @@
         color: white;
         font-size: 16px;
         cursor: pointer;
-        transition: background 0.3s; /* 过渡效果 */
+        transition: all 0.3s; /* 过渡效果 */
+      }
+
+      .button-box > button:first-child {
+        background: transparent;
+        border: 1px solid #d9d9d9;
+        box-sizing: border-box;
+        color: #000;
+      }
+
+      .button-box > button:first-child:hover {
+        background: transparent;
+        border: 1px solid #f06595;
+        box-sizing: border-box;
+        color: #f06595;
+      }
+
+      .button-box > button:last-child {
+        margin-right: 0;
       }
 
       button:hover {
@@ -141,7 +164,10 @@
             <span>截止时间：</span>
             <input id="inputTime" type="datetime-local" />
           </label>
-          <button onclick="confirmBtn()">确定</button>
+          <div class="button-box">
+            <button onclick="refresh()">刷新</button>
+            <button onclick="confirmBtn()">确定</button>
+          </div>
         </div>
       </div>
     </div>
@@ -279,6 +305,12 @@
       document.getElementById("countDownBox").style.display = "none";
       // 显示输入框
       document.getElementById("inputBox").style.display = "block";
+    }
+
+    // 刷新
+    function refresh() {
+      // 刷新页面
+      location.reload();
     }
   </script>
 </html>
