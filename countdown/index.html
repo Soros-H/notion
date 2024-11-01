@@ -153,9 +153,9 @@
       // 判断输入框的值是否为空
       if (inputValue) {
         // 输入框的值不为空，存贮到缓存中
-        localStorage.setItem("endTime", new Date(inputValue).getTime());
+        sessionStorage.setItem("endTime", new Date(inputValue).getTime());
         // 输入框的值不为空，存贮到缓存中
-        localStorage.setItem("name", inputName);
+        sessionStorage.setItem("name", inputName);
         // 隐藏输入框
         document.getElementById("inputBox").style.display = "none";
         // 显示倒计时
@@ -176,7 +176,7 @@
     // 倒计时
     function countDown() {
       // 获取缓存的截止时间
-      var endTime = localStorage.getItem("endTime");
+      var endTime = sessionStorage.getItem("endTime");
 
       // 判断是否存在缓存的截止时间
       if (endTime) {
@@ -189,7 +189,7 @@
       }
 
       // 获取缓存的名称
-      var name = localStorage.getItem("name");
+      var name = sessionStorage.getItem("name");
       // 显示名称
       document.getElementById("countDownName").innerHTML = name;
 
@@ -266,9 +266,9 @@
     // 重置
     function reset() {
       // 清除缓存的截止时间
-      localStorage.removeItem("endTime");
+      sessionStorage.removeItem("endTime");
       // 清除缓存的名称
-      localStorage.removeItem("name");
+      sessionStorage.removeItem("name");
       // 隐藏倒计时
       document.getElementById("countDownBox").style.display = "none";
       // 显示输入框
